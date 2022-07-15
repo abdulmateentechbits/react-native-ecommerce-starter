@@ -2,7 +2,8 @@ import constants from "./constants";
 import theme, { COLORS, SIZES, FONTS, lightTheme, darkTheme } from "./theme";
 import images from "./images";
 import icons from "./icons";
-import {banners,
+import {
+    banners,
     flashDeals,
     promoItems,
     categories,
