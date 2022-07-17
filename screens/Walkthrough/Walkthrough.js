@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { View, Text, Animated } from "react-native";
 import { TextButton } from "../../components";
 import { COLORS, SIZES, FONTS, constants } from "../../constants";
+import Walkthrough1 from "./Walkthrough1";
 
 const Walkthrough = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -65,8 +66,8 @@ const Walkthrough = () => {
               backgroundColor: COLORS.dark08,
             }}
             labelStyle={{
-                color:COLORS.primary,
-                ...FONTS.h3,
+              color: COLORS.primary,
+              ...FONTS.h3,
             }}
           />
           <TextButton
@@ -74,11 +75,11 @@ const Walkthrough = () => {
             contentContainerStyle={{
               flex: 1,
               marginLeft: SIZES.radius,
-              borderRadius:SIZES.radius,
+              borderRadius: SIZES.radius,
               backgroundColor: COLORS.primary,
             }}
             labelStyle={{
-                ...FONTS.h3,
+              ...FONTS.h3,
             }}
           />
         </View>
@@ -99,7 +100,7 @@ const Walkthrough = () => {
         snapToInterval={SIZES.width}
         decelerationRate="fast"
         showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={16}
+        scrollEventThrottle={58}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           {
@@ -115,7 +116,9 @@ const Walkthrough = () => {
               }}
             >
               {/* Walkthrough images */}
-              <View style={{ flex: 1 }}></View>
+              <View style={{ flex: 1, justifyContent: "center" }}>
+                {index == 0 && <Walkthrough1 />}
+              </View>
               {/* Title and description */}
               <View
                 style={{
@@ -125,7 +128,9 @@ const Walkthrough = () => {
                   paddingHorizontal: SIZES.padding,
                 }}
               >
-                <Text style={{ ...FONTS.h1 }}>{item.title}</Text>
+                <Text style={{ ...FONTS.h1, color: COLORS.dark }}>
+                  {item.title}
+                </Text>
                 <Text
                   style={{
                     ...FONTS.body3,
