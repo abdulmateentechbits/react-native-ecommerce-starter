@@ -4,13 +4,24 @@ import { TextButton } from "../../components";
 import { COLORS, SIZES, FONTS, constants } from "../../constants";
 import Walkthrough1 from "./Walkthrough1";
 import Walkthrough2 from "./Walkthrough2";
+import Walkthrough3 from "./Walkthrough3";
+import Walkthrough4 from "./Walkthrough4";
 
-const Walkthrough = () => {
+const Walkthrough = ({navigation}) => {
   // Walkthroug2 animation
   const [walkthroug2animate, setWalkthroug2animate]=useState(false);
+  const [walkthroug3animate, setWalkthroug3animate]=useState(false);
+  const [walkthroug4animate, setWalkthroug4animate]=useState(false);
   const onViewChangeRef=useRef(({viewableItems, changed})=>{
+
     if(viewableItems[0].index == 1){
       setWalkthroug2animate(true);
+    }
+    if(viewableItems[0].index == 2){
+      setWalkthroug3animate(true);
+    }
+    if(viewableItems[0].index == 3){
+      setWalkthroug4animate(true);
     }
   });
 
@@ -90,6 +101,10 @@ const Walkthrough = () => {
             labelStyle={{
               ...FONTS.h3,
             }}
+            onPress={()=>navigation.reset({
+              index:0,
+              routes:[{name:'AuthMain'}]
+            })}
           />
         </View>
       </View>
@@ -129,6 +144,8 @@ const Walkthrough = () => {
               <View style={{ flex: 1, justifyContent: "center" }}>
                 {index == 0 && <Walkthrough1 />}
                 {index == 1 && <Walkthrough2 animate={walkthroug2animate} />}
+                {index === 2 && <Walkthrough3 animate2={walkthroug3animate} />}
+                {index === 3 && <Walkthrough4 animate4={walkthroug4animate} />}
               </View>
               {/* Title and description */}
               <View
